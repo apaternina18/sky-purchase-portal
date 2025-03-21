@@ -16,7 +16,7 @@ const Index = () => {
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            Book Your Dream Flight with <span className="text-airline-primary">SkyWings</span>
+            Book Your Dream Flight with <span className="text-airline-primary">David Airlines</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Enjoy a premium travel experience with comfortable seats, excellent service, and competitive prices

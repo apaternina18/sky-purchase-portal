@@ -13,7 +13,7 @@ const NavBar: React.FC = () => {
               <div className="bg-airline-primary p-2 rounded-full">
                 <Plane className="h-5 w-5 text-white" />
               </div>
-              <span className="font-bold text-xl">SkyWings</span>
+              <span className="font-bold text-xl">David Airlines</span>
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-8">

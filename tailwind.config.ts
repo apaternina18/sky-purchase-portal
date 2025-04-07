@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -36,6 +35,15 @@ export default {
 					muted: 'hsl(var(--airline-muted))',
 					background: 'hsl(var(--airline-background))',
 					foreground: 'hsl(var(--airline-foreground))',
+				},
+				cpd: {
+					navy: '#0F2454',
+					blue: '#1B75BC',
+					lightBlue: '#63A8E9',
+					gray: '#F5F5F7',
+					lightGray: '#F8F8FA',
+					white: '#FFFFFF',
+					text: '#4A4A4A',
 				},
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',

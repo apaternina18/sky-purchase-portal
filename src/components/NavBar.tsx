@@ -1,22 +1,9 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Plane, Download } from "lucide-react";
+import { Plane } from "lucide-react";
 
 const NavBar: React.FC = () => {
-  const handleDownloadCode = () => {
-    // Create a dummy link to trigger download
-    const link = document.createElement('a');
-    link.href = '/download-code';
-    link.download = 'cpd-airlines.zip';
-    link.target = '_blank';
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    
-    alert('Your download will begin shortly. If it doesn\'t start automatically, please check your browser settings.');
-  };
-
   return (
     <nav className="bg-white border-b border-gray-100">
       <div className="airline-container">
@@ -44,13 +31,6 @@ const NavBar: React.FC = () => {
             </Link>
           </div>
           <div className="hidden md:flex items-center space-x-4">
-            <button 
-              onClick={handleDownloadCode}
-              className="flex items-center text-gray-600 hover:text-airline-primary transition-colors"
-            >
-              <Download className="h-4 w-4 mr-1" />
-              Download Code
-            </button>
             <button className="text-gray-600 hover:text-airline-primary transition-colors">
               Sign In
             </button>

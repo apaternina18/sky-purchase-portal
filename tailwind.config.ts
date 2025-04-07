@@ -37,9 +37,9 @@ export default {
 					foreground: 'hsl(var(--airline-foreground))',
 				},
 				cpd: {
-					navy: '#0F2454',
-					blue: '#1B75BC',
-					lightBlue: '#63A8E9',
+					navy: '#000000',
+					blue: '#B8273C',
+					lightBlue: '#D15369',
 					gray: '#F5F5F7',
 					lightGray: '#F8F8FA',
 					white: '#FFFFFF',

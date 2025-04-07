@@ -1,7 +1,6 @@
 
 import React from "react";
 import { Link } from "react-router-dom";
-import { Plane } from "lucide-react";
 
 const NavBar: React.FC = () => {
   return (
@@ -10,9 +9,11 @@ const NavBar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link to="/" className="flex items-center space-x-2">
-              <div className="bg-cpd-blue p-2 rounded-full">
-                <Plane className="h-5 w-5 text-white" />
-              </div>
+              <img 
+                src="/lovable-uploads/1e123817-3477-4783-84be-170aac6323cb.png" 
+                alt="CellPoint Digital" 
+                className="h-10 w-10"
+              />
               <span className="font-bold text-xl text-white">CPD Airlines</span>
             </Link>
           </div>

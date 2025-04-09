@@ -8,6 +8,7 @@ import PassengerInfo, { PassengerData } from "../components/PassengerInfo";
 import SeatSelection from "../components/SeatSelection";
 import PaymentInfo from "../components/PaymentInfo";
 import OrderSummary from "../components/OrderSummary";
+import HostedPaymentInfo from "../components/HostedPaymentInfo";
 
 interface Flight {
   id: string;
@@ -28,6 +29,7 @@ const Checkout: React.FC = () => {
   const [selectedFlight, setSelectedFlight] = useState<Flight | null>(null);
   const [passengerData, setPassengerData] = useState<PassengerData | null>(null);
   const [selectedSeat, setSelectedSeat] = useState<string | null>(null);
+  const [paymentMethod, setPaymentMethod] = useState<"iframe" | "hosted" | null>(null);
   
   const steps = ["Flight", "Passenger", "Seat", "Payment"];
   
@@ -41,8 +43,9 @@ const Checkout: React.FC = () => {
     setTimeout(() => setCurrentStep(2), 300);
   };
   
-  const handleSeatSelect = (seat: string) => {
+  const handleSeatSelect = (seat: string, method: "iframe" | "hosted") => {
     setSelectedSeat(seat);
+    setPaymentMethod(method);
     setTimeout(() => setCurrentStep(3), 300);
   };
   
@@ -51,7 +54,8 @@ const Checkout: React.FC = () => {
       state: { 
         flight: selectedFlight,
         passengerData,
-        selectedSeat
+        selectedSeat,
+        paymentMethod
       } 
     });
   };
@@ -84,8 +88,12 @@ const Checkout: React.FC = () => {
               <SeatSelection onSeatSelect={handleSeatSelect} />
             )}
             
-            {currentStep === 3 && (
+            {currentStep === 3 && paymentMethod === "iframe" && (
               <PaymentInfo onPaymentComplete={handlePaymentComplete} />
+            )}
+            
+            {currentStep === 3 && paymentMethod === "hosted" && (
+              <HostedPaymentInfo onPaymentComplete={handlePaymentComplete} />
             )}
           </div>
           

@@ -1,8 +1,9 @@
+
 import React, { useState } from "react";
 import { Plane } from "lucide-react";
 
 interface SeatSelectionProps {
-  onSeatSelect: (seat: string) => void;
+  onSeatSelect: (seat: string, paymentMethod: "iframe" | "hosted") => void;
 }
 
 const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
@@ -19,7 +20,6 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
     if (unavailableSeats.includes(seat)) return;
     
     setSelectedSeat(seat);
-    onSeatSelect(seat);
   };
   
   const getSeatStatus = (seat: string) => {
@@ -39,7 +39,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
             <span className="text-sm">Available</span>
           </div>
           <div className="flex items-center">
-            <div className="w-5 h-5 rounded bg-cpd-blue mr-2"></div>
+            <div className="w-5 h-5 rounded bg-[#B8273C] mr-2"></div>
             <span className="text-sm">Selected</span>
           </div>
           <div className="flex items-center">
@@ -49,9 +49,9 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
         </div>
         
         <div className="flex justify-center mb-8">
-          <div className="bg-cpd-blue/20 rounded px-6 py-2 flex items-center">
-            <Plane className="h-5 w-5 text-cpd-blue mr-2" />
-            <span className="text-sm font-medium text-cpd-blue">Front of Plane</span>
+          <div className="bg-[#B8273C]/20 rounded px-6 py-2 flex items-center">
+            <Plane className="h-5 w-5 text-[#B8273C] mr-2" />
+            <span className="text-sm font-medium text-[#B8273C]">Front of Plane</span>
           </div>
         </div>
         
@@ -129,7 +129,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
         <div className="bg-airline-secondary/30 rounded-xl p-6 mb-6">
           <h3 className="text-lg font-medium mb-2">Your Selected Seat</h3>
           <div className="flex items-center">
-            <div className="bg-cpd-blue text-white w-12 h-12 rounded-lg flex items-center justify-center font-medium mr-4">
+            <div className="bg-[#B8273C] text-white w-12 h-12 rounded-lg flex items-center justify-center font-medium mr-4">
               {selectedSeat}
             </div>
             <div>
@@ -140,13 +140,21 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
         </div>
       )}
       
-      <div className="pt-4">
+      <div className="pt-4 space-y-3">
         <button 
           className="airline-button-primary w-full"
           disabled={!selectedSeat}
-          onClick={() => selectedSeat && onSeatSelect(selectedSeat)}
+          onClick={() => selectedSeat && onSeatSelect(selectedSeat, "iframe")}
         >
-          Continue
+          Continue with iFrame Payment
+        </button>
+        
+        <button 
+          className="border border-[#B8273C] bg-white text-[#B8273C] hover:bg-[#B8273C]/10 px-6 py-3 rounded-full font-medium transition-all duration-200 ease-in-out shadow-sm hover:shadow w-full"
+          disabled={!selectedSeat}
+          onClick={() => selectedSeat && onSeatSelect(selectedSeat, "hosted")}
+        >
+          Continue with Hosted Payment Page
         </button>
       </div>
     </div>

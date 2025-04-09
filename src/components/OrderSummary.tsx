@@ -44,13 +44,13 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
       <div className="space-y-6">
         <div className="flex items-start space-x-3">
           <div className="bg-airline-secondary rounded-full p-2 mt-1">
-            <Plane className="h-4 w-4 text-airline-primary" />
+            <Plane className="h-4 w-4 text-cpd-blue" />
           </div>
           
           <div>
             <div className="flex items-center space-x-2 mb-1">
               <h4 className="font-medium">{flight.departureCity} to {flight.arrivalCity}</h4>
-              <div className="airline-chip bg-airline-secondary/50 text-airline-primary text-xs">
+              <div className="airline-chip bg-airline-secondary/50 text-cpd-blue text-xs">
                 Direct
               </div>
             </div>
@@ -72,7 +72,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
         {passengerName && (
           <div className="flex items-start space-x-3 pt-4 border-t border-gray-100">
             <div className="bg-airline-secondary rounded-full p-2 mt-1">
-              <User className="h-4 w-4 text-airline-primary" />
+              <User className="h-4 w-4 text-cpd-blue" />
             </div>
             
             <div>
@@ -81,7 +81,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
               
               {selectedSeat && (
                 <div className="flex items-center space-x-2 mt-3">
-                  <div className="text-xs bg-airline-primary text-white px-2 py-1 rounded">
+                  <div className="text-xs bg-cpd-blue text-white px-2 py-1 rounded">
                     Seat {selectedSeat}
                   </div>
                   <span className="text-sm text-gray-500">Economy Class</span>
@@ -127,7 +127,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({
           
           <div className="flex justify-between items-center pt-3 border-t border-gray-100 mt-3">
             <span className="font-medium">Total</span>
-            <span className="text-lg font-bold text-airline-primary">${total.toFixed(2)}</span>
+            <span className="text-lg font-bold text-cpd-blue">${total.toFixed(2)}</span>
           </div>
         </div>
       </div>

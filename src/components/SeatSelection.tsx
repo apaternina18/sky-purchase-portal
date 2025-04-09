@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { Plane } from "lucide-react";
 
@@ -40,7 +39,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
             <span className="text-sm">Available</span>
           </div>
           <div className="flex items-center">
-            <div className="w-5 h-5 rounded bg-airline-primary mr-2"></div>
+            <div className="w-5 h-5 rounded bg-cpd-blue mr-2"></div>
             <span className="text-sm">Selected</span>
           </div>
           <div className="flex items-center">
@@ -50,9 +49,9 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
         </div>
         
         <div className="flex justify-center mb-8">
-          <div className="bg-airline-primary/20 rounded px-6 py-2 flex items-center">
-            <Plane className="h-5 w-5 text-airline-primary mr-2" />
-            <span className="text-sm font-medium text-airline-primary">Front of Plane</span>
+          <div className="bg-cpd-blue/20 rounded px-6 py-2 flex items-center">
+            <Plane className="h-5 w-5 text-cpd-blue mr-2" />
+            <span className="text-sm font-medium text-cpd-blue">Front of Plane</span>
           </div>
         </div>
         
@@ -130,7 +129,7 @@ const SeatSelection: React.FC<SeatSelectionProps> = ({ onSeatSelect }) => {
         <div className="bg-airline-secondary/30 rounded-xl p-6 mb-6">
           <h3 className="text-lg font-medium mb-2">Your Selected Seat</h3>
           <div className="flex items-center">
-            <div className="bg-airline-primary text-white w-12 h-12 rounded-lg flex items-center justify-center font-medium mr-4">
+            <div className="bg-cpd-blue text-white w-12 h-12 rounded-lg flex items-center justify-center font-medium mr-4">
               {selectedSeat}
             </div>
             <div>

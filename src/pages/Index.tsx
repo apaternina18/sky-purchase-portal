@@ -10,13 +10,13 @@ const Index = () => {
       <div className="min-h-[70vh] flex flex-col items-center justify-center py-12">
         <div className="max-w-3xl w-full text-center mb-12 animate-slide-up">
           <div className="mb-6">
-            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-airline-secondary/60 text-airline-primary text-sm font-medium mb-6">
+            <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-airline-secondary/60 text-cpd-blue text-sm font-medium mb-6">
               <Plane className="h-4 w-4 mr-2" />
               Experience Seamless Travel
             </div>
           </div>
           <h1 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-            Book Your Dream Flight with <span className="text-airline-primary">CPD Airlines</span>
+            Book Your Dream Flight with <span className="text-cpd-blue">CPD Airlines</span>
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Enjoy a premium travel experience with comfortable seats, excellent service, and competitive prices
@@ -113,7 +113,7 @@ const Index = () => {
               Lowest fares
             </div>
             <div className="flex items-center">
-              <div className="w-3 h-3 rounded-full bg-airline-primary mr-2"></div>
+              <div className="w-3 h-3 rounded-full bg-cpd-blue mr-2"></div>
               Direct flights
             </div>
             <div className="flex items-center">

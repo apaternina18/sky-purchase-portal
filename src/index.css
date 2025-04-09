@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
@@ -38,9 +37,9 @@
     --radius: 1rem;
 
     /* Airline specific colors */
-    --airline-primary: 199 89% 48%;
-    --airline-secondary: 199 60% 90%;
-    --airline-accent: 174 86% 45%;
+    --airline-primary: 348 65% 44%;
+    --airline-secondary: 348 40% 90%;
+    --airline-accent: 348 65% 44%;
     --airline-muted: 210 20% 97%;
     --airline-background: 210 20% 98%;
     --airline-foreground: 220 20% 15%;
@@ -76,9 +75,9 @@
     --ring: 212.7 26.8% 83.9%;
 
     /* Airline specific colors */
-    --airline-primary: 199 89% 48%;
-    --airline-secondary: 199 60% 20%;
-    --airline-accent: 174 86% 45%;
+    --airline-primary: 348 65% 44%;
+    --airline-secondary: 348 40% 20%;
+    --airline-accent: 348 65% 44%;
     --airline-muted: 215 25% 12%;
     --airline-background: 224 71% 4%;
     --airline-foreground: 213 31% 91%;
@@ -114,20 +113,20 @@
   }
   
   .airline-button-primary {
-    @apply bg-airline-primary hover:bg-airline-primary/90 text-white px-6 py-3 rounded-full 
+    @apply bg-cpd-blue hover:bg-cpd-lightBlue text-white px-6 py-3 rounded-full 
            font-medium transition-all duration-200 ease-in-out shadow-sm hover:shadow
-           focus:outline-none focus:ring-2 focus:ring-airline-primary/50 focus:ring-offset-2;
+           focus:outline-none focus:ring-2 focus:ring-cpd-blue/50 focus:ring-offset-2;
   }
   
   .airline-button-secondary {
-    @apply bg-airline-secondary hover:bg-airline-secondary/90 text-airline-primary px-6 py-3 rounded-full 
+    @apply bg-airline-secondary hover:bg-airline-secondary/90 text-cpd-blue px-6 py-3 rounded-full 
            font-medium transition-all duration-200 ease-in-out shadow-sm hover:shadow
            focus:outline-none focus:ring-2 focus:ring-airline-secondary/50 focus:ring-offset-2;
   }
   
   .airline-input {
     @apply bg-white border border-gray-300 rounded-xl px-4 py-3 w-full
-           focus:outline-none focus:ring-2 focus:ring-airline-primary/30 focus:border-airline-primary/30
+           focus:outline-none focus:ring-2 focus:ring-cpd-blue/30 focus:border-cpd-blue/30
            transition-all duration-200 ease-in-out;
   }
   
@@ -148,11 +147,11 @@
   }
   
   .airline-seat-available {
-    @apply bg-airline-secondary text-airline-primary hover:bg-airline-primary hover:text-white cursor-pointer;
+    @apply bg-airline-secondary text-cpd-blue hover:bg-cpd-blue hover:text-white cursor-pointer;
   }
   
   .airline-seat-selected {
-    @apply bg-airline-primary text-white;
+    @apply bg-cpd-blue text-white;
   }
   
   .airline-seat-unavailable {

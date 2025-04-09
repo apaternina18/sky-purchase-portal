@@ -60,7 +60,7 @@ const Confirmation: React.FC = () => {
           </div>
           <h1 className="text-3xl font-bold mb-3 animate-slide-up">Booking Confirmed!</h1>
           <p className="text-gray-600 animate-slide-up">
-            Thank you for booking with SkyWings. Your flight has been successfully booked.
+            Thank you for booking with CPD Airlines. Your flight has been successfully booked.
           </p>
         </div>
         
@@ -68,7 +68,7 @@ const Confirmation: React.FC = () => {
           <div className="p-6 border-b border-gray-100">
             <div className="flex justify-between items-center">
               <h2 className="text-xl font-bold">Booking Details</h2>
-              <div className="airline-chip bg-airline-secondary/70 text-airline-primary">
+              <div className="airline-chip bg-airline-secondary/70 text-cpd-blue">
                 Confirmed
               </div>
             </div>
@@ -78,7 +78,7 @@ const Confirmation: React.FC = () => {
           <div className="p-6 animate-slide-up">
             <div className="flex flex-col md:flex-row items-center justify-between mb-6">
               <div className="mb-4 md:mb-0">
-                <div className="text-4xl font-bold text-airline-primary animate-plane-takeoff">
+                <div className="text-4xl font-bold text-cpd-blue animate-plane-takeoff">
                   {flight.departureCode}
                 </div>
                 <p className="text-gray-500">{flight.departureCity}</p>
@@ -88,17 +88,17 @@ const Confirmation: React.FC = () => {
               <div className="flex flex-col items-center">
                 <p className="text-xs text-gray-400 mb-1">{flight.duration}</p>
                 <div className="relative w-32 md:w-48 h-px bg-gray-300 my-2">
-                  <div className="absolute top-1/2 right-0 w-2 h-2 bg-airline-primary rounded-full transform -translate-y-1/2"></div>
-                  <div className="absolute top-1/2 left-0 w-2 h-2 bg-airline-primary rounded-full transform -translate-y-1/2"></div>
+                  <div className="absolute top-1/2 right-0 w-2 h-2 bg-cpd-blue rounded-full transform -translate-y-1/2"></div>
+                  <div className="absolute top-1/2 left-0 w-2 h-2 bg-cpd-blue rounded-full transform -translate-y-1/2"></div>
                   <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <Plane className="h-5 w-5 text-airline-primary animate-pulse-soft" />
+                    <Plane className="h-5 w-5 text-cpd-blue animate-pulse-soft" />
                   </div>
                 </div>
                 <p className="text-xs text-gray-400 mt-1">Direct Flight</p>
               </div>
               
               <div className="mt-4 md:mt-0">
-                <div className="text-4xl font-bold text-airline-primary">
+                <div className="text-4xl font-bold text-cpd-blue">
                   {flight.arrivalCode}
                 </div>
                 <p className="text-gray-500">{flight.arrivalCity}</p>
@@ -120,7 +120,7 @@ const Confirmation: React.FC = () => {
               <div>
                 <h3 className="text-sm font-medium text-gray-500 mb-1">Seat</h3>
                 <div className="flex items-center">
-                  <div className="bg-airline-primary text-white text-sm px-2 py-1 rounded mr-2">
+                  <div className="bg-cpd-blue text-white text-sm px-2 py-1 rounded mr-2">
                     {selectedSeat}
                   </div>
                   <span className="text-sm">Economy</span>
@@ -130,19 +130,19 @@ const Confirmation: React.FC = () => {
           </div>
         </div>
         
-        <div className="bg-airline-primary/5 rounded-xl p-6 border border-airline-primary/10 mb-8 animate-slide-up">
+        <div className="bg-cpd-blue/5 rounded-xl p-6 border border-cpd-blue/10 mb-8 animate-slide-up">
           <h3 className="font-medium mb-3">Important Information</h3>
           <ul className="space-y-2 text-sm text-gray-600">
             <li className="flex items-start">
-              <ArrowRight className="h-4 w-4 text-airline-primary mr-2 mt-0.5 flex-shrink-0" />
+              <ArrowRight className="h-4 w-4 text-cpd-blue mr-2 mt-0.5 flex-shrink-0" />
               Please arrive at the airport at least 2 hours before your departure time.
             </li>
             <li className="flex items-start">
-              <ArrowRight className="h-4 w-4 text-airline-primary mr-2 mt-0.5 flex-shrink-0" />
+              <ArrowRight className="h-4 w-4 text-cpd-blue mr-2 mt-0.5 flex-shrink-0" />
               Don't forget to bring a valid photo ID or passport for check-in.
             </li>
             <li className="flex items-start">
-              <ArrowRight className="h-4 w-4 text-airline-primary mr-2 mt-0.5 flex-shrink-0" />
+              <ArrowRight className="h-4 w-4 text-cpd-blue mr-2 mt-0.5 flex-shrink-0" />
               A confirmation email has been sent to {passengerData.email}.
             </li>
           </ul>
@@ -153,7 +153,7 @@ const Confirmation: React.FC = () => {
             Return to Home
           </Link>
           <p className="mt-4 text-sm text-gray-500">
-            Need help? <a href="#" className="text-airline-primary hover:underline">Contact Support</a>
+            Need help? <a href="#" className="text-cpd-blue hover:underline">Contact Support</a>
           </p>
         </div>
       </div>

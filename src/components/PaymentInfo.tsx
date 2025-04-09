@@ -1,9 +1,18 @@
 
 import React, { useState } from "react";
 import { CreditCard, Calendar, Lock, CheckCircle } from "lucide-react";
+import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import { Label } from "./ui/label";
+import { AppleIcon, GoogleIcon, CreditCardIcon } from "./PaymentIcons";
 
 interface PaymentInfoProps {
   onPaymentComplete: () => void;
+}
+
+interface PaymentMethod {
+  id: string;
+  name: string;
+  icon: React.ReactNode;
 }
 
 const PaymentInfo: React.FC<PaymentInfoProps> = ({ onPaymentComplete }) => {
@@ -13,6 +22,25 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ onPaymentComplete }) => {
   const [nameOnCard, setNameOnCard] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  const [paymentMethod, setPaymentMethod] = useState("card");
+  
+  const paymentMethods: PaymentMethod[] = [
+    {
+      id: "card",
+      name: "Credit/Debit Card",
+      icon: <CreditCardIcon className="h-6 w-6" />
+    },
+    {
+      id: "apple",
+      name: "Apple Pay",
+      icon: <AppleIcon className="h-6 w-6" />
+    },
+    {
+      id: "google",
+      name: "Google Pay",
+      icon: <GoogleIcon className="h-6 w-6" />
+    }
+  ];
   
   const formatCardNumber = (value: string) => {
     const v = value.replace(/\s+/g, "").replace(/[^0-9]/gi, "");
@@ -73,6 +101,11 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ onPaymentComplete }) => {
   };
   
   const validateForm = (): boolean => {
+    // Skip validation for Apple Pay and Google Pay
+    if (paymentMethod !== "card") {
+      return true;
+    }
+    
     const newErrors: Record<string, string> = {};
     
     if (!cardNumber.trim()) {
@@ -129,113 +162,178 @@ const PaymentInfo: React.FC<PaymentInfoProps> = ({ onPaymentComplete }) => {
           </div>
         </div>
         
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="space-y-2">
-            <label htmlFor="cardNumber" className="airline-label">
-              Card Number
-            </label>
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <CreditCard className="h-5 w-5 text-gray-400" />
+        <RadioGroup className="mb-6" value={paymentMethod} onValueChange={setPaymentMethod}>
+          {paymentMethods.map((method) => (
+            <div 
+              key={method.id}
+              className={`flex items-center space-x-3 rounded-lg border p-4 cursor-pointer transition-colors ${
+                paymentMethod === method.id 
+                  ? 'border-airline-primary bg-airline-primary/5' 
+                  : 'border-gray-200 hover:border-gray-300'
+              }`}
+              onClick={() => setPaymentMethod(method.id)}
+            >
+              <RadioGroupItem value={method.id} id={method.id} className="text-airline-primary" />
+              <div className="flex items-center justify-between flex-1">
+                <Label htmlFor={method.id} className="flex items-center gap-2 cursor-pointer font-medium">
+                  {method.icon}
+                  {method.name}
+                </Label>
               </div>
-              <input
-                type="text"
-                id="cardNumber"
-                value={cardNumber}
-                onChange={handleCardNumberChange}
-                className={`airline-input pl-10 ${errors.cardNumber ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
-                placeholder="**** **** **** ****"
-                maxLength={19}
-              />
             </div>
-            {errors.cardNumber && (
-              <p className="text-red-500 text-sm mt-1">{errors.cardNumber}</p>
-            )}
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          ))}
+        </RadioGroup>
+        
+        {paymentMethod === "card" ? (
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2">
-              <label htmlFor="expiryDate" className="airline-label">
-                Expiry Date
+              <label htmlFor="cardNumber" className="airline-label">
+                Card Number
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Calendar className="h-5 w-5 text-gray-400" />
+                  <CreditCard className="h-5 w-5 text-gray-400" />
                 </div>
                 <input
                   type="text"
-                  id="expiryDate"
-                  value={expiryDate}
-                  onChange={handleExpiryDateChange}
-                  className={`airline-input pl-10 ${errors.expiryDate ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
-                  placeholder="MM/YY"
-                  maxLength={5}
+                  id="cardNumber"
+                  value={cardNumber}
+                  onChange={handleCardNumberChange}
+                  className={`airline-input pl-10 ${errors.cardNumber ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
+                  placeholder="**** **** **** ****"
+                  maxLength={19}
                 />
               </div>
-              {errors.expiryDate && (
-                <p className="text-red-500 text-sm mt-1">{errors.expiryDate}</p>
+              {errors.cardNumber && (
+                <p className="text-red-500 text-sm mt-1">{errors.cardNumber}</p>
               )}
             </div>
             
-            <div className="space-y-2">
-              <label htmlFor="cvv" className="airline-label">
-                CVV
-              </label>
-              <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <Lock className="h-5 w-5 text-gray-400" />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label htmlFor="expiryDate" className="airline-label">
+                  Expiry Date
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Calendar className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    id="expiryDate"
+                    value={expiryDate}
+                    onChange={handleExpiryDateChange}
+                    className={`airline-input pl-10 ${errors.expiryDate ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
+                    placeholder="MM/YY"
+                    maxLength={5}
+                  />
                 </div>
-                <input
-                  type="text"
-                  id="cvv"
-                  value={cvv}
-                  onChange={handleCvvChange}
-                  className={`airline-input pl-10 ${errors.cvv ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
-                  placeholder="***"
-                  maxLength={3}
-                />
+                {errors.expiryDate && (
+                  <p className="text-red-500 text-sm mt-1">{errors.expiryDate}</p>
+                )}
               </div>
-              {errors.cvv && (
-                <p className="text-red-500 text-sm mt-1">{errors.cvv}</p>
+              
+              <div className="space-y-2">
+                <label htmlFor="cvv" className="airline-label">
+                  CVV
+                </label>
+                <div className="relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <Lock className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    type="text"
+                    id="cvv"
+                    value={cvv}
+                    onChange={handleCvvChange}
+                    className={`airline-input pl-10 ${errors.cvv ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
+                    placeholder="***"
+                    maxLength={3}
+                  />
+                </div>
+                {errors.cvv && (
+                  <p className="text-red-500 text-sm mt-1">{errors.cvv}</p>
+                )}
+              </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label htmlFor="nameOnCard" className="airline-label">
+                Name on Card
+              </label>
+              <input
+                type="text"
+                id="nameOnCard"
+                value={nameOnCard}
+                onChange={handleNameChange}
+                className={`airline-input ${errors.nameOnCard ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
+                placeholder="John Doe"
+              />
+              {errors.nameOnCard && (
+                <p className="text-red-500 text-sm mt-1">{errors.nameOnCard}</p>
               )}
             </div>
+            
+            <div className="flex items-center space-x-2 text-sm text-gray-600">
+              <Lock className="h-4 w-4" />
+              <p>Your payment information is secure and encrypted</p>
+            </div>
+            
+            <div className="pt-4">
+              <button type="submit" className="airline-button-primary w-full" disabled={isProcessing}>
+                {isProcessing ? (
+                  <div className="flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    Processing Payment...
+                  </div>
+                ) : (
+                  "Complete Payment"
+                )}
+              </button>
+            </div>
+          </form>
+        ) : (
+          <div className="space-y-6">
+            <div className="p-6 border border-gray-200 rounded-xl flex flex-col items-center justify-center text-center">
+              <div className="w-16 h-16 bg-airline-primary/10 rounded-full flex items-center justify-center mb-4">
+                {paymentMethod === "apple" ? 
+                  <AppleIcon className="h-8 w-8" /> : 
+                  <GoogleIcon className="h-8 w-8" />
+                }
+              </div>
+              <h3 className="text-lg font-medium mb-2">
+                {paymentMethod === "apple" ? "Pay with Apple Pay" : "Pay with Google Pay"}
+              </h3>
+              <p className="text-gray-600 mb-4">
+                {paymentMethod === "apple" 
+                  ? "You'll be redirected to Apple Pay to complete your purchase securely." 
+                  : "You'll be redirected to Google Pay to complete your purchase securely."
+                }
+              </p>
+              <button 
+                type="button" 
+                onClick={() => {
+                  setIsProcessing(true);
+                  setTimeout(() => {
+                    setIsProcessing(false);
+                    onPaymentComplete();
+                  }, 2000);
+                }}
+                className="airline-button-primary w-full" 
+                disabled={isProcessing}
+              >
+                {isProcessing ? (
+                  <div className="flex items-center justify-center">
+                    <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
+                    Processing...
+                  </div>
+                ) : (
+                  `Continue with ${paymentMethod === "apple" ? "Apple Pay" : "Google Pay"}`
+                )}
+              </button>
+            </div>
           </div>
-          
-          <div className="space-y-2">
-            <label htmlFor="nameOnCard" className="airline-label">
-              Name on Card
-            </label>
-            <input
-              type="text"
-              id="nameOnCard"
-              value={nameOnCard}
-              onChange={handleNameChange}
-              className={`airline-input ${errors.nameOnCard ? 'border-red-500 focus:ring-red-500 focus:border-red-500' : ''}`}
-              placeholder="John Doe"
-            />
-            {errors.nameOnCard && (
-              <p className="text-red-500 text-sm mt-1">{errors.nameOnCard}</p>
-            )}
-          </div>
-          
-          <div className="flex items-center space-x-2 text-sm text-gray-600">
-            <Lock className="h-4 w-4" />
-            <p>Your payment information is secure and encrypted</p>
-          </div>
-          
-          <div className="pt-4">
-            <button type="submit" className="airline-button-primary w-full" disabled={isProcessing}>
-              {isProcessing ? (
-                <div className="flex items-center justify-center">
-                  <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                  Processing Payment...
-                </div>
-              ) : (
-                "Complete Payment"
-              )}
-            </button>
-          </div>
-        </form>
+        )}
       </div>
       
       <div className="bg-airline-primary/5 rounded-xl p-6 border border-airline-primary/10">
